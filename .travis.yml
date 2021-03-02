@@ -40,8 +40,8 @@ deploy:
   on:
     branch: master
 
-access_key_id: $AWS_ACCESS_KEY
-secret_access_key: $AWS_SECRET_ACCESS_KEY
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
 
 # 테스트 성공 후 할 일
 after_success:
