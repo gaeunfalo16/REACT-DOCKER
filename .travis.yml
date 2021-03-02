@@ -13,7 +13,7 @@ before_install:
 # 에코로 출력하는 부분
   - echo "start creating an image with dockerfile"
 # 진짜 이미지를 빌드하는 부분 
-  - docker build -t gaeun1116/react-docker:latest-f Dockerfile.dev .
+  - docker build -t gaeun1116/react-docker:latest -f Dockerfile.dev .
 
 # 실행할 스크립트(테스트 실행)
 script:
