@@ -1,0 +1,17 @@
+FROM node:alpine
+
+WORKDIR /usr/src/app
+
+COPY package.json ./
+
+# package.json의 종속성을 다운받아 주세요.
+RUN npm install
+
+COPY ./ ./
+
+# react앱 켜주세요.
+CMD ["npm", "run", "start"]
+
+# build를 하면 디렉토리 내에서 알아서 dockerfile을 찾아 빌드한다. 하지만 .dev형태라서 못찾는 것이다.
+# 그래서 docker build -f Dockerfile.dev ./
+# 이 명령어를 써서 이미지를 빌드할 때 쓰일 도커 파일을 임의로 지정해준다.

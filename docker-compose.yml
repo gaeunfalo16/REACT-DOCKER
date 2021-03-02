@@ -1,0 +1,20 @@
+version: "3" # 도커 컴포즈의 버전
+services: # 실행하려는 컨테이너 정리
+  react: # 컨테이너 이름
+    build:  # 현 디렉토리에 있는 Dockerfile 사용
+      context: . # 도커 이미지를 구성하기 위한 파일과 폴더들의 위치
+      dockerfile: Dockerfile.dev # 어떤 것이 도커 파일인지
+    ports:
+      - "3000:3000" # 포트 매핑 로컬포트:컨테이너포트
+    volumes: # 로컬 머신에 있는 파일 매핑
+      - /usr/src/app/node_modules
+      - ./:/usr/src/app
+    stdin_open: true # 리액트 앱을 끌 때 필요(버그 때문에)
+  tests:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /usr/src/app/node_modules
+      - ./:/usr/src/app
+    command: ["npm", "run", "test"]
