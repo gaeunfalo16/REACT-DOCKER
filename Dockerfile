@@ -9,6 +9,7 @@ RUN npm run build
 # 여기서는 빌드파일을 생성하고 이를  /usr/src/app/build에 들어간다
 
 FROM nginx
+EXPOSE 80
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 # run stage에서는 Ngnix를 가동하고 이를 위한 베이스 이미지를 가져오고 
 # --from-builder는 다른 스테이지에 있는 파일을 복사할 때 다르 stage 이름을 명시
