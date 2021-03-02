@@ -20,6 +20,29 @@ script:
   - docker run -e CI=true gaeun1116/react-docker:latest npm run test -- --coverage
 # 테스트는 이미지를 이용해서 컨테이너를 실행하고 CI=true는 에러 해결 위해서 --coverage 테스트를 상세하게 볼 수 있게
 
+#deploy
+deploy:
+# 외부 서비스 표시(s3, elasticbeanstalk, firebase 등등)
+  provider: elasticbeanstalk
+# 현재 사용하고 있는 aws의 서비스가 위치하고 있는 물리적 장소
+  region: "us-east-2"
+# 생성된 어플리케이션의 이름
+  app: "react-docker"
+# 환경의 이름
+  env: "Reactdocker-env"
+# 해당 elasticbeanstalk을 위한 s3 버켓 이름
+  bucket_name: "elasticbeanstalk-us-east-2-887067101268"
+# s3는 파일을 저장한다. travis 에서 가지고 있는 파일을 압축해서 s3에 보낸다. 그런 다음에 elasticbeanstalk에 보낸다.
+# s3는 elasticbeanstalk를 생성할 때 같이 자동적으로 생산된다.  
+# 어플리케이션의 이름과 동일
+  bucket_path: "react-docker"
+# 어떤 브랜치에 Push할 때 AWS에 배포를 할 것인지.  
+  on:
+    branch: master
+
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_ACCESS_KEY
+
 # 테스트 성공 후 할 일
 after_success:
   - echo "Test success"
