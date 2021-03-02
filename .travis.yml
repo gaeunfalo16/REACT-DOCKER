@@ -25,7 +25,7 @@ deploy:
 # 외부 서비스 표시(s3, elasticbeanstalk, firebase 등등)
   provider: elasticbeanstalk
 # 현재 사용하고 있는 aws의 서비스가 위치하고 있는 물리적 장소
-  region: "us-east-2"
+  region: "us-east-2";
 # 생성된 어플리케이션의 이름
   app: "react-docker"
 # 환경의 이름
